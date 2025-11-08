@@ -52,120 +52,118 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="bg-base-100 Orbitron">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <Link
-          href="/"
-          className="flex items-center mb-2 text-2xl font-semibold text-base-content"
-        >
-          <IconBrandInstagram className="mr-2 text-primary" size={20} />
-          InstaPluseAI
-        </Link>
-        <div className="w-full bg-base-300 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-base-content md:text-2xl text-center">
-              Sign in to your account
-            </h1>
-            {/* Email Field */}
-            <fieldset className="fieldset">
-              <legend className="legend font-bold">
-                Email <span className="text-error">*</span>
-              </legend>
+    <section className="h-[calc(100vh-9rem)] flex items-center justify-center bg-linear-to-br from-primary/10 via-secondary/10 to-accent/10 p-4">
+      <div className="w-full max-w-md bg-base-100 shadow-xl px-10 py-8 rounded-lg">
+        <div className="text-center mb-6">
+          <div className="flex justify-center mb-4">
+            <IconBrandInstagram size={48} className="text-primary" />
+          </div>
+          <h2 className="text-3xl font-bold">Welcome Back</h2>
+          <p className="text-base-content/70">
+            Login to your InstaPlus AI account
+          </p>
+        </div>
+        <div className="space-y-4">
+          {/* Email Field */}
+          <fieldset className="fieldset">
+            <legend className="legend font-bold">
+              Email <span className="text-error">*</span>
+            </legend>
+            <input
+              type="email"
+              name="email"
+              placeholder="student@company.com"
+              className="input input-bordered w-full"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+            />
+          </fieldset>
+          {/* Password Field */}
+          <fieldset className="fieldset">
+            <legend className="legend font-bold">
+              Password <span className="text-error">*</span>
+            </legend>
+            <div className="join">
               <input
-                type="email"
-                name="email"
-                placeholder="student@company.com"
-                className="input input-bordered w-full"
-                value={formData.email}
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="••••••••"
+                className="input input-bordered join-item w-full"
+                value={formData.password}
                 onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
+                  setFormData({ ...formData, password: e.target.value })
                 }
               />
-            </fieldset>
-            {/* Password Field */}
-            <fieldset className="fieldset">
-              <legend className="legend font-bold">
-                Password <span className="text-error">*</span>
-              </legend>
+              <button
+                className="btn btn-square join-item"
+                onClick={() => setShowPassword(!showPassword)}
+                type="button"
+              >
+                {showPassword ? <IconEyeOff /> : <IconEye />}
+              </button>
+            </div>
+          </fieldset>
+
+          {/* Captcha Field */}
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">Captcha</legend>
+            <div className="flex flex-row gap-2">
               <div className="join">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  placeholder="••••••••"
-                  className="input input-bordered join-item w-full"
-                  value={formData.password}
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
-                />
+                <div className="bg-base-300 text-center px-4 py-1 text-xl font-mono tracking-widest join-item">
+                  {captcha}
+                </div>
                 <button
-                  className="btn btn-square join-item"
-                  onClick={() => setShowPassword(!showPassword)}
                   type="button"
+                  className="btn btn-neutral join-item px-4 py-2"
+                  aria-label="Regenerate Captcha"
+                  onClick={genereateCaptcha}
                 >
-                  {showPassword ? <IconEyeOff /> : <IconEye />}
+                  &#x21bb;
                 </button>
               </div>
-            </fieldset>
-
-            {/* Captcha Field */}
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend">Captcha</legend>
-              <div className="flex flex-row gap-2">
-                <div className="join">
-                  <div className="bg-base-100 text-center px-4 py-1 text-xl font-mono tracking-widest join-item">
-                    {captcha}
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-neutral join-item px-4 py-2"
-                    aria-label="Regenerate Captcha"
-                    onClick={genereateCaptcha}
-                  >
-                    &#x21bb;
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  className="input"
-                  value={formData.captchaInput}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      captchaInput: e.target.value.toUpperCase(),
-                    })
-                  }
-                  placeholder="Enter Captcha"
-                />
-              </div>
-            </fieldset>
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
-                Remember Me
-              </label>
-              <a href="#" className="text-sm text-primary hover:underline">
-                Forgot Password?
-              </a>
+              <input
+                type="text"
+                className="input"
+                value={formData.captchaInput}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    captchaInput: e.target.value.toUpperCase(),
+                  })
+                }
+                placeholder="Enter Captcha"
+              />
             </div>
-            <button
-              className="btn btn-primary w-full"
-              disabled={
-                formData.captchaInput !== captcha ||
-                !formData.email ||
-                !formData.password
-              }
-              onClick={handleSubmit}
-            >
-              Sign Up
-            </button>
-            <p className="text-sm font-light text-center text-base-content/80">
-              Don't have an account?{" "}
-              <Link
-                href="/register"
-                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >
-                Sign Up
+          </fieldset>
+          <div className="flex items-center justify-between">
+            <label className="flex items-center">
+              <input type="checkbox" className="mr-2" />
+              Remember Me
+            </label>
+            <a href="#" className="text-sm text-primary hover:underline">
+              Forgot Password?
+            </a>
+          </div>
+          <button
+            className="btn btn-primary w-full"
+            disabled={
+              formData.captchaInput !== captcha ||
+              !formData.email ||
+              !formData.password
+            }
+            onClick={handleSubmit}
+          >
+            Sign Up
+          </button>
+
+          <div className="divider">OR</div>
+          <div className="text-center">
+            <p className="text-sm">
+              Don't have an Account?{" "}
+              <Link href="/regiser" className="link link-primary font-semibold">
+                Register Here
               </Link>
             </p>
           </div>

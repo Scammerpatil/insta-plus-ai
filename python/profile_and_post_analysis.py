@@ -17,6 +17,9 @@ locale.setlocale(category=locale.LC_ALL, locale="en_GB.UTF-8")
 
 def analyze_sentiment(text):
     """Analyze text sentiment and return (label, confidence)."""
+    max_length = 512
+    if len(text) > max_length:
+        text = text[:max_length]
     result = pipe(text)
     label = "negative" if result[0]['label'] == 'LABEL_0' else "neutral" if result[0]['label'] == 'LABEL_1' else "positive"
     confidence = result[0]['score']

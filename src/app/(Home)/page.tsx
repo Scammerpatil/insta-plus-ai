@@ -179,6 +179,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className="py-24 px-10 bg-neutral/30" id="features">
         <div className="container mx-auto">
           <div className="text-center mb-16 animate-fade-in">

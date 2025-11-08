@@ -18,14 +18,9 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
     icon: <IconLayoutDashboard width="22" height="22" />,
   },
   {
-    title: "Sentiment Analysis",
-    path: "/user/sentiment",
-    icon: <IconChartLine width="22" height="22" />,
-  },
-  {
-    title: "Comments & Insights",
+    title: "Comments & Sentiment Analysis",
     path: "/user/comments",
-    icon: <IconMessage2 width="22" height="22" />,
+    icon: <IconChartLine width="22" height="22" />,
   },
   {
     title: "Account Analysis",

@@ -23,7 +23,6 @@ const createTokenAndResponse = (data: object, route: string) => {
 
 export async function POST(req: NextRequest) {
   const { email, password, role } = await req.json();
-  console.log(email, password, role);
   if (!email || !password) {
     return NextResponse.json(
       { message: "Please fill all the fields" },

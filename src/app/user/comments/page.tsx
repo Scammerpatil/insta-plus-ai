@@ -185,7 +185,9 @@ export default function SentimentPage() {
                   <td className="flex items-center gap-3">
                     {c.profile_pic_url && (
                       <img
-                        src={c.profile_pic_url}
+                        src={`/api/helper/proxy-image?url=${encodeURI(encodeURIComponent(
+                          c.profile_pic_url
+                        ))}`}
                         alt={c.user}
                         className="w-8 h-8 rounded-full"
                       />

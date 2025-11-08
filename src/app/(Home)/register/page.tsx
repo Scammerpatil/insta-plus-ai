@@ -120,23 +120,17 @@ export default function RegisterPage() {
 
   return (
     <>
-      <section className="bg-base-100 Orbitron py-4">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:min-h-screen lg:py-0">
-          <Link
-            href="/"
-            className="flex items-center mb-2 text-2xl font-semibold text-base-content"
-          >
-            <IconBrandInstagram className="mr-2 text-primary" size={20} />
-            InstaPluseAI
-          </Link>
-          <div className="w-full bg-base-300 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-base-content md:text-2xl text-center">
-                Create an account
-              </h1>
-              <p className="text-sm font-light text-center">
-                Start your journey with InstaPluse AI
-              </p>
+      <section className="h-[calc(100vh-9rem)] flex items-center justify-center bg-linear-to-br from-primary/10 via-secondary/10 to-accent/10 p-4">
+        <div className="w-full max-w-5xl bg-base-100 shadow-xl px-10 py-8 rounded-lg">
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-4">
+              <IconBrandInstagram size={48} className="text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold">Create Account</h2>
+            <p className="text-base-content/70">Join InstaPlus AI today</p>
+          </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
               <fieldset className="fieldset">
                 <legend className="legend font-bold">
@@ -217,6 +211,7 @@ export default function RegisterPage() {
                   }
                 />
               </fieldset>
+              {/* Insta Username */}
               <fieldset className="fieldset">
                 <legend className="legend font-bold">
                   Instagram Username <span className="text-error">*</span>{" "}
@@ -292,43 +287,43 @@ export default function RegisterPage() {
                   </button>
                 </div>
               </fieldset>
-              {/* Terms and Conditions */}
-              <div className="flex items-center">
-                <label className="label cursor-pointer">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-primary checkbox-sm"
-                  />
-                  <span className="text-sm ml-2">
-                    I agree to the{" "}
-                    <Link href="#" className="text-primary hover:underline">
-                      Terms and Conditions
-                    </Link>
-                  </span>
-                </label>
-              </div>
-              <button
-                className="btn btn-primary w-full mt-4 py-2"
-                disabled={
-                  !isEmailVerified ||
-                  !user.name ||
-                  !user.email ||
-                  !user.password ||
-                  !user.instaUserName ||
-                  !user.phone ||
-                  !user.profileImage
-                }
-                onClick={handleUpload}
-              >
-                Create Account
-              </button>
-              <p className="text-sm font-light text-base-content/70 text-center">
+            </div>
+            {/* Terms and Conditions */}
+            <div className="flex items-center">
+              <label className="label cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
+                />
+                <span className="text-sm ml-2">
+                  I agree to the{" "}
+                  <Link href="#" className="text-primary hover:underline">
+                    Terms and Conditions
+                  </Link>
+                </span>
+              </label>
+            </div>
+            <button
+              className="btn btn-primary w-full mt-4 py-2"
+              disabled={
+                !isEmailVerified ||
+                !user.name ||
+                !user.email ||
+                !user.password ||
+                !user.instaUserName ||
+                !user.phone ||
+                !user.profileImage
+              }
+              onClick={handleUpload}
+            >
+              Create Account
+            </button>
+            <div className="divider">OR</div>
+            <div className="text-center">
+              <p className="text-sm">
                 Already have an account?{" "}
-                <Link
-                  href="/login"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Login here
+                <Link href="/login" className="link link-primary font-semibold">
+                  Login
                 </Link>
               </p>
             </div>
